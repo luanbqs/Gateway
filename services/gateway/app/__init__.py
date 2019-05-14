@@ -6,11 +6,13 @@ from flask_migrate import Migrate, MigrateCommand
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:itegra@localhost/Gateway'
+
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
+from app.models import tables
 from app.controllers import default
 
