@@ -1,27 +1,33 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
+import service from '../services/service'
+
+
+
 
 export default class Home extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
+            mensagem: 'oi'
         }
 
     }
+
+    teste = async () => {
+        const { data } = await service.post("/teste");
+        console.log('data', data)
+    }
+
+
+    componentDidMount() {
+        this.teste()
+    }
+    
     render() {
-        const mostrarVariavel = 'Mostrando variavel na tela';
         return (
             <div >
-                <head>
-                    <title>
-                        Teste
-                    </title>
-                </head>
-                <h1>{mostrarVariavel}</h1>
-
-          
-                <img src="https://pbs.twimg.com/media/Dn83uJYWsAA5S0u.jpg" alt="vemprofut" width="200" height="200"></img>
-
+                {this.state.mensagem}
             </div>
         )
     }

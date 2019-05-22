@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
 import './Login.css'
+import service from '../services/service'
+
 
 export default class Login extends Component {
     constructor(props) {
@@ -18,7 +20,7 @@ export default class Login extends Component {
     changePageAdress = () => {
         this.props.history.push(this.state.pageAdress)
     }
-
+    
 
     showRegisterBox = () => {
         this.setState({ isRegisterOpen: true, isLoginOpen: false })
@@ -40,18 +42,28 @@ export default class Login extends Component {
     render() {
         return (
             <div>
-                <div className="info-container">
 
-                    <div className={"controller " + (this.state.isHomeOpen ? "selected-controller" : "")} onClick={this.showHomePage.bind(this)}>
-                        Home
-                    </div>
-                    <div className={"controller " + (this.state.isAbouUsOpen ? "selected-controller" : "")} onClick={this.showAboutUsPage.bind(this)}>
-                        Quem somos
-                    </div >
-                    <div className={"controller " + (this.state.isContactOpen ? "selected-controller" : "")} onClick={this.showContactPage.bind(this)}>
-                        Contato
+
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col col-sm-2">
+                            <div className={"controller " + (this.state.isHomeOpen ? "selected-controller" : "")} onClick={this.showHomePage.bind(this)}>
+                                Home
+                            </div>
+                        </div>
+                        <div class="col col-sm-2">
+                            <div className={"controller " + (this.state.isAbouUsOpen ? "selected-controller" : "")} onClick={this.showAboutUsPage.bind(this)}>
+                                Quem somos
+                            </div >
+                        </div>
+                        <div class="col col-sm-2">
+                            <div className={"controller " + (this.state.isContactOpen ? "selected-controller" : "")} onClick={this.showContactPage.bind(this)}>
+                                Contato
+                            </div>
+                        </div>
                     </div>
                 </div>
+
 
                 <div className="root-container">
 
