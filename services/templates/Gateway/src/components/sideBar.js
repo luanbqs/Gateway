@@ -17,7 +17,18 @@ export default class SideBar extends Component {
             <div>
                 <SideNav
                     onSelect={(selected) => {
-                        alert('aaah', selected)
+                        if(selected === 'create-event'){
+                            this.props.creatEvent()
+                        }
+                        if(selected === 'create-guests'){
+                            this.props.createUser()
+                        }
+                        if(selected === 'list-events'){
+                            this.props.listEvent()
+                        }
+                        if(selected === 'list-guests'){
+                            this.props.listUser()
+                        }
                         console.log('aaaaa', selected)
                     }}
                 >
@@ -38,14 +49,24 @@ export default class SideBar extends Component {
                             <NavText>
                                 Painel
                             </NavText>
-                            <NavItem eventKey="charts/linechart">
+                            <NavItem eventKey="create-event">
                                 <NavText>
                                     Adicinar evento
                             </NavText>
                             </NavItem>
-                            <NavItem eventKey="charts/barchart">
+                            <NavItem eventKey="create-guests">
                                 <NavText>
                                     Adicionar convidado
+                            </NavText>
+                            </NavItem>
+                            <NavItem eventKey="list-events">
+                                <NavText>
+                                    Listar eventos
+                            </NavText>
+                            </NavItem>
+                            <NavItem eventKey="list-guests">
+                                <NavText>
+                                    Listar convidados
                             </NavText>
                             </NavItem>
                         </NavItem>
