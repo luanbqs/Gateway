@@ -1,10 +1,9 @@
 from app import db
-from app.models.categoria.Categoria import * 
 from app.models.guests.guests import *
 
 import sqlalchemy
 
-class eventDAO:
+class guestDAO:
     
     def __init__(self):
         pass
@@ -12,7 +11,7 @@ class eventDAO:
     def create(self, name, email, event_id):
 
         guest = Guest(name ,email, event_id)
-        db.session.add(event)
+        db.session.add(guest)
         db.session.commit()
 
         return {"nome":guest.name, "email": guest.email}

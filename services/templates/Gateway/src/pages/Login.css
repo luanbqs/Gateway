@@ -45,7 +45,7 @@
 
 .selected-controller {
     transition: border 0.5s ease-out;
-    border-bottom: 2px solid  #1bac3f;
+    border-bottom: 2px solid  #db3d44;
 }
 
 .box-container {
@@ -70,7 +70,7 @@
     margin-bottom: 17px;
     font-family: Ozxgen, sans-serif;
     font-size: 22px;
-    border-bottom: 2px solid #1bac3f;
+    border-bottom: 2px solid #db3d44;
 }
 
 .box {
@@ -85,6 +85,13 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+.input-group-panel {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 70%;
+}
 
 .login-label {
     font-family: Oxygen, sans-serif;
@@ -96,7 +103,7 @@
 .login-input {
     height: 2.1em;
     border-radius: 2px;
-    border: 1px solid #1bac3f;
+    border: 1px solid #db3d44;
     transition: border 0.4s ease-out;
     padding: 13px;
     font-family: Oxygen, sans-serif;
@@ -106,18 +113,18 @@
 }
 
 .login-input:hover {
-    border: 1px solid #1bac3f;
+    border: 1px solid #db3d44;
 }
 
 .login-input:focus {
-    border: 0.5px solid #094d09;
+    border: 0.5px solid #3b070a;
     box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
 }
 
 .login-input::placeholder {
     font-family: Oxygen, sans-serif;
     font-size: 16px;
-    color: rgba(46, 213, 116, 0.839);
+    color: rgba(219, 61, 68, 0.893);
     color: rgba(15, 15, 15, 0.4);
 }
 
@@ -130,14 +137,14 @@
     font-family: Oxygen, sans-serif;
     background-color: rgba(15, 15, 15, 0.03);
     margin-top: 20px;
-    border: 1px solid #1bac3f;
+    border: 1px solid #db3d44;
     transition: background-color 0.3s ease-out;
     cursor: pointer;
 }
 
 .login-btn:hover,
 .login-btn:focus {
-    background-color: #1bac3f;
+    background-color: #db3d44;
     color: white;
 }
 

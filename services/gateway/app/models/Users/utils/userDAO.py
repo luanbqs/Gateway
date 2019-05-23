@@ -1,10 +1,9 @@
 from app import db
-from app.models.categoria.Categoria import * 
 from app.models.users.users import *
 
 import sqlalchemy
 
-class eventDAO:
+class userDAO:
     
     def __init__(self):
         pass

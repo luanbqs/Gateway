@@ -1,14 +1,21 @@
 from app import *
-
+from app.models.guests.utils.guestDAO import *
 from flask import jsonify, request
 
 
 @app.endpoint('/create-guest')
 def index():
     try:
+        content = request.get_json(silent=True)
+
+        gDAO = guestDAO()
+        response = gDAO.create(content['name'],content['email'],content['event_id'])
         return jsonify({
-            "mensagem":"Tchau"
+            "status": True,
+            "mensagem": "convidado criado",
+            "payload": response
         })
+
     except Exception as error:
         return jsonify({
             "status":False,
@@ -30,8 +37,14 @@ def index():
 @app.endpoint('/delet-guest')
 def index():
     try:
+        content = request.get_json(silent=True)
+        gDAO = guestDAO()
+        response = gDAO.delete(content['id'])
+
         return jsonify({
-            "mensagem":"Tchau"
+            "status": True,
+            "mensagem": "convidado deletado",
+            "payload": response
         })
     except Exception as error:
         return jsonify({
