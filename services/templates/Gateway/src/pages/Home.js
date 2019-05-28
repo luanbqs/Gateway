@@ -3,22 +3,42 @@ import ReactDOM from 'react-dom';
 import service from '../services/service'
 import SideBar from '../components/sideBar'
 import './Login.css'
+import DataTable from '../components/dataTable'
+
+
+const columnData = [
+    { "name": "Nome", "id": "name" },
+    { "name": "Local", "id": "local" },
+    { "name": "Data", "id": "date" },
+    { "name": "", "id": "editar" }
+];
+
+const userColumnData = [
+    { "name": "Nome", "id": "name" },
+    { "name": "Local", "id": "local" },
+    { "name": "Data", "id": "date" },
+    { "name": "", "id": "editar" }
+];
 
 export default class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            renderA: 'A',
-            renderB: 'B',
-            setAB: 'A',
             eventName: '',
             eventLocal: '',
             eventDate: '',
-            page: 'Criar Evento'
+            page: 'Criar Evento',
+            data: '',
+            loaded: false
 
         }
     }
-    componentDidUpdate() {
+
+
+    componentDidMount() {
+        if (this.state.loaded === false) {
+            this.loadEvents()
+        }
         console.log('---->state', this.state)
     }
     // =============== UPDATE EVENT PROPS ===============
@@ -64,6 +84,7 @@ export default class Home extends Component {
         })
     }
     listEvent = () => {
+        console.log('chegou aqui')
         this.setState({
             page: 'Listar Eventos'
         })
@@ -79,7 +100,31 @@ export default class Home extends Component {
 
         })
     }
+    // ==================== Search event ====================
+    loadEvents = async () => {
+        const { data } = await service.post('/search-event')
+        console.log('response', data)
+        this.setState({
+            data: data.payload,
+            loaded: true
+        })
+    }
 
+    createEvent = async () => {
+        if (this.state.eventDate !== '' && this.state.eventLocal !== '' && this.state.eventName != '') {
+            const { data } = await service.post('/create-event')
+        }else{
+            alert('Preencha todos os dados')
+        }
+    
+    }
+    deleteItens(item) {
+        alert('AINDA NAO FAZ NADA', item)
+    }
+
+    editarItens(item) {
+        alert('ainda n faz nada', item)
+    }
     render() {
 
         return (
@@ -104,7 +149,7 @@ export default class Home extends Component {
                                     <label htmlFor="username">Data do evento:</label>
                                     <input value={this.state.username} onChange={event => this.updateEventDate(event)} className="login-input" type="text" name="username" placeholder="Usuário" />
                                 </div>
-                                <button type="buttom" className="login-btn" onClick={this.submitLogin}>Cadastrar</button>
+                                <button type="buttom" className="login-btn" onClick={this.createEvent   }>Cadastrar</button>
                             </div>
                         }
                         {
@@ -121,16 +166,44 @@ export default class Home extends Component {
                                 <div style={{ marginTop: '30px' }} className="input-group-panel">
                                     <label>Nome do evento</label>
                                     <select value={this.state.type} onChange={evt => this.updateUserEventName(evt)} className="login-input" name="cores">
-                                        <option > </option>
+                                        <option></option>
+                                        {this.state.data.map((item, index) =>
+                                            <option key={index}>{item.name}</option>
+                                        )}
+                                        {/* <option > </option>
                                         <option>Usuario</option>
-                                        <option>Administrador</option>
+                                        <option>Administrador</option> */}
                                     </select>
                                 </div>
                                 <button type="buttom" className="login-btn" onClick={this.submitLogin}>Cadastrar</button>
                             </div>
 
                         }
+                        {
+                            this.state.page === 'Listar Eventos' && this.state.loaded &&
+                            <DataTable
+                                ref={ref => this.dataTable = ref}
+                                columnData={columnData}
+                                titleTable="Eventos"
+                                data={this.state.data}
+                                deleteItens={this.deleteItens.bind(this)}
+                                editarItens={this.editarItens.bind(this)}
+                                editPath={"/editarProduto"}
+                            />
+                        }
+                        {
+                            this.state.page === 'Listar Usuarios' && this.state.loaded &&
+                            <DataTable
+                                ref={ref => this.dataTable = ref}
+                                columnData={userColumnData}
+                                titleTable="Usuarios"
+                                data={this.state.data}
+                                deleteItens={this.deleteItens.bind(this)}
+                                editarItens={this.editarItens.bind(this)}
+                                editPath={"/editarProduto"}
+                            />
 
+                        }
                     </div>
                 </div>
 

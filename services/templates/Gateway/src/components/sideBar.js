@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import HomeIcon from '@material-ui/icons/Home';
+import BuildIcon from '@material-ui/icons/Build';
+import ExitIcon from '@material-ui/icons/ExitToApp';
+import { Redirect, Route, Switch, Link } from 'react-router-dom';
+
+
+
 
 // import { Container } from './styles';
 
@@ -17,16 +24,16 @@ export default class SideBar extends Component {
             <div>
                 <SideNav
                     onSelect={(selected) => {
-                        if(selected === 'create-event'){
+                        if (selected === 'create-event') {
                             this.props.creatEvent()
                         }
-                        if(selected === 'create-guests'){
+                        if (selected === 'create-guests') {
                             this.props.createUser()
                         }
-                        if(selected === 'list-events'){
+                        if (selected === 'list-events') {
                             this.props.listEvent()
                         }
-                        if(selected === 'list-guests'){
+                        if (selected === 'list-guests') {
                             this.props.listUser()
                         }
                         console.log('aaaaa', selected)
@@ -36,7 +43,7 @@ export default class SideBar extends Component {
                     <SideNav.Nav defaultSelected="home">
                         <NavItem eventKey="home">
                             <NavIcon>
-                                <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                                <HomeIcon className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
                             </NavIcon>
                             <NavText>
                                 Home
@@ -44,7 +51,7 @@ export default class SideBar extends Component {
                         </NavItem>
                         <NavItem eventKey="charts">
                             <NavIcon>
-                                <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
+                                <BuildIcon className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
                             </NavIcon>
                             <NavText>
                                 Painel
@@ -69,6 +76,17 @@ export default class SideBar extends Component {
                                     Listar convidados
                             </NavText>
                             </NavItem>
+                        </NavItem>
+                        <NavItem eventKey="exit">
+                            <NavIcon>
+                                <Link style={{ textDecoration: 'none' }} to={{ pathname:'/' }}>
+
+                                    <ExitIcon className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                                </Link>
+                            </NavIcon>
+                            <NavText>
+                                Logout
+                            </NavText>
                         </NavItem>
                     </SideNav.Nav>
                 </SideNav>
